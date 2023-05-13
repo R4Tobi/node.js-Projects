@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TO-DO Liste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+
+            body{
+                width: 90vw;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-top: 50px;
+                background: #e2e2e2;
+                margin: auto;
+            }
+
+            #logout .form input[type=button]{
+                border: none;
+                border-radius: 2px;
+                padding: 10px 20px;
+                outline: none;
+                font-size: 14px;
+                color: #252525;
+                transition: all ease-in-out 0.2s;
+                background: #fff;
+                margin-bottom: 10px;
+            }
+
+            #logout .form input[type=button]:hover{
+                background: #248959;
+                color: #e2e2e2;
+            }
+
+            #personnel{
+                width: 500px;
+                background: #fff;
+                font-size: 18px;
+                padding: 10px 20px;
+                text-align: center;
+            }
+
+            @media screen and (max-width: 500px){
+                #personnel{
+                    width: 90vw;
+                }
+            }
+
+            #requestToDo{
+                margin-top: 10px;
+                width: 500px;
+                background: #fff;
+                font-size: 18px;
+                padding: 10px 20px;
+                text-align: center;
+            }
+
+            @media screen and (max-width: 500px){
+                #requestToDo{
+                    width: 90vw;
+                }
+            }
+
+            #requestToDo input{
+                border: none;
+                border-radius: 0 0 3px 3px;
+                padding: 10px 20px;
+                outline: none;
+                font-size: 18px;
+                color: #252525;
+                transition: all ease-in-out 0.2s;
+            }
+
+            #requestToDo input[type=button]:hover{
+                background: #248959;
+                color: #e2e2e2;
+            }
+
+            #toDoForm{
+                width: 500px;
+                display:flex;
+                flex-direction: column;
+                background: #fff;
+            }
+
+            @media screen and (max-width: 500px){
+                #toDoForm{
+                    width: 90vw;
+                }
+            }
+
+            #toDoForm:first-child{
+                margin-top: 20px !important;
+            }
+
+            #toDoForm:last-child{
+                margin-top: 20px !important;
+            }
+
+            #toDoForm input[type=text], #toDoForm input[type=date], select{
+                border: none;
+                border-bottom: 2px solid #c5c5c5;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                font-size: 16px;
+                transition: all ease-in-out 0.2s;
+            }
+
+            #toDoForm input[type=text]:hover, #toDoForm input[type=date]:hover{
+                border: none;
+                border-bottom: 2px solid #248959;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                outline: none;
+            }
+
+            #toDoForm input[type=text]:focus, #toDoForm input[type=date]:focus{
+                border: none;
+                border-bottom: 2px solid #248959;
+                border-radius: 3px 3px 0 0;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                outline: none;
+            }
+
+            #toDoForm input[type=button]{
+                border: none;
+                border-radius: 0 0 3px 3px;
+                padding: 20px 20px;
+                outline: none;
+                font-size: 18px;
+                color: #252525;
+                transition: all ease-in-out 0.2s;
+            }
+
+            #toDoForm input[type=button]:hover{
+                background: #248959;
+                color: #e2e2e2;
+            }
+
+            .task{
+                width: 500px;
+                padding: 5px;
+                border-radius: 3px;
+                border-left: 3px solid #7ab8ff;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                margin: 10px 0;
+                background: #fff;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            @media screen and (max-width: 500px){
+                .task{
+                    width: 90vw;
+                }
+            }
+
+            .task h3{
+                margin: 5px;
+            }
+
+            .task .content{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                align-items: flex-start;
+            }
+
+            .task .meta{
+                padding: 2px 5px;
+                border-left: 2px solid #4d4d4d;
+            }
+
+            .meta-btn{
+                border: none;
+                background: #248959;
+                margin-top: 5px;
+                color: #e2e2e2;
+                font-size: 14px;
+                width: 110px;
+                padding: 2px 5px;
+            }
+
+            .meta-btn:hover{
+                border: none;
+                background: #e2e2e2;
+                color: #131313
+            }
+
+            #response{
+                position: absolute;
+                top: 50px;
+                margin: auto;
+                background: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                border: 1px solid #248959;
+            }
+
+            #response input{
+                width: 100%;
+                padding: 10px 20px;
+                background: #e2e2e2;
+                border: none;
+            }
+
+            #response input:hover{
+                width: 100%;
+                padding: 10px 20px;
+                background: #248959;
+                border: none;
+            }
+        </style>
+    </head>
+    <body onload="onInit()">
+        <h2>ToDo-Liste</h2>
+        <section id="logout">
+            <div class="form">
+                <input type="button" value="Abmelden" onclick="logout()">
+                <input type="button" value="Linktree" onclick="window.open(`http://${window.location.hostname}:80/`,'_self')">
+            </div>
+        </section>
+        <section id="personnel" style="display:block">
+
+        </section>
+        <section id="requestToDo" style="display: none;">
+
+        </section>
+        <section id="toDoForm" style="display: none;">
+            <input type="text" placeholder="Name" id="taskName">
+            <input type="date" placeholder="Datum" id="taskDate">
+            <input type="text" placeholder="Beschreibung" id="taskDesc">
+            <select id="taskUser">
+            </select>
+            <input type="button" value="Absenden" onclick="addToDo(false, this)">
+        </section>
+        <section id="tasks">
+        </section>
+        <section id="otherTasks">
+            
+        </section>
+        <section id="finishedTasks">
+            
+        </section>
+        <div id="response" style="display: none;"></div>
+        <script>
+function onInit(){
+    if(sessionStorage.getItem("user") != null){ 
+        call()
+    }else if(getCookie("user") != ""){ 
+        call()
+    }else{
+        window.open("/", "_self")
+    }
+    function call(){
+        var user;
+        if(sessionStorage.getItem("user")){
+            user = sessionStorage.getItem("user")
+        } else if (getCookie("user")){
+            user = getCookie("user")
+        }
+        var role;
+        if(sessionStorage.getItem("role")){
+            role = sessionStorage.getItem("role")
+        } else if (getCookie("role")){
+            role = getCookie("role")
+        }
+        getToDo(user, role)
+        getUsers()
+    }
+}
+        </script>
+        <script src="/data/001-ClientJS/80xx-utils.js"></script>
+        <script src="/data/001-ClientJS/8020-ToDo.js"></script>
+    </body>
+</html>

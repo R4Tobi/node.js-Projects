@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        ::selection{
+            user-select: none;
+        }
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 90vh;
+            margin: 0;
+            background: #030303;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 400px;
+            background: transparent;
+            padding: 30px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e2e2e2;
+        }
+
+        .header header{
+            font-size: 36px;
+        }
+
+        .header .header-comment{
+            font-size: 18px;
+            color: #e2e2e2;
+        }
+
+        .link-div{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 360px;
+            background: #e2e2e2;
+            box-shadow: 0px 0px 124px 46px #e2e2e26e;
+            padding: 30px;
+            border-radius: 10px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .a{
+            display: flex;
+            width: 250px;
+            padding: 10px;
+            color: #353535;
+            border: 1px solid #353535;
+            margin: 10px auto;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all ease-in-out .2s;
+        }
+
+        .a:hover{
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body onload="onInit()">
+    <div class="header">
+        <header>Admin Panel / Status</header>
+        <span class="header-comment">// node-serv-01</span>
+    </div>
+    <div class="link-div" id="content" style="margin-bottom: 20px;">
+        <p>CPU</p>
+        <progress id="cpu" max="100" value=""></progress>
+        <p>RAM</p>
+        <progress id="ram" max="100" value=""></progress>
+    </div>
+    <div class="link-div" id="contentAdmin">
+        <input type="button" class="a" value="Server neu starten" onclick="reboot()">
+        <input type="button" class="a" value="node Server neu starten" onclick="restart()">
+        <input type="button" class="a" value="Abmelden" onclick="logout()">
+        <a class="a" href="http://192.168.178.253:80/">Linktree</a>
+    </div>
+    <script>
+function onInit(){
+    if(sessionStorage.getItem("user")){
+        setInterval(() => { 
+            getSysInfo();
+        }, 1000);
+        return;
+    }else if(getCookie("user")){
+        setInterval(() => { 
+            getSysInfo();
+        }, 1000);
+        return;
+    }else{
+        window.open("/", "_self");
+    }
+}
+    </script>
+    <script src="/data/001-ClientJS/80xx-utils.js"></script>
+    <script src="/data/001-ClientJS/8030-adminPanel.js"></script>
+</body>
+</html>

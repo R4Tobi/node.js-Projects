@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TO-DO Liste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                box-sizing: border-box;
+            }
+
+            body{
+                width: 90vw;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-top: 50px;
+                background: #e2e2e2;
+                margin: auto;
+            }
+            #login{
+                display: flex;
+                flex-direction:column;
+                background: #fff;
+            }
+
+            #login .form{
+                display: flex;
+                flex-direction:column;
+                width: 500px;
+            }
+
+            @media screen and (max-width: 500px){
+                #login .form{
+                    display: flex;
+                    flex-direction:column;
+                    width: 90vw;
+                }
+            }
+
+            #login .form input[type=text]{
+                margin-top: 20px !important;
+            }
+
+            #login .form input[type=password]{
+                margin-bottom: 20px !important;
+            }
+
+            #login .form input[type=text], #login .form input[type=password]{
+                border: none;
+                border-bottom: 2px solid #c5c5c5;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                font-size: 16px;
+                transition: all ease-in-out 0.2s;
+            }
+
+            #login .form input[type=text]:hover, #login .form input[type=password]:hover{
+                border: none;
+                border-bottom: 2px solid #248959;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                outline: none;
+            }
+
+            #login .form input[type=text]:focus, #login .form input[type=password]:focus{
+                border: none;
+                border-bottom: 2px solid #248959;
+                border-radius: 3px 3px 0 0;
+                padding: 10px 20px;
+                margin: 5px 10px;
+                outline: none;
+            }
+
+            #login .form input[type=button]{
+                border: none;
+                border-radius: 0 0 3px 3px;
+                padding: 20px 20px;
+                outline: none;
+                font-size: 18px;
+                color: #252525;
+                transition: all ease-in-out 0.2s;
+            }
+
+            #login .form input[type=button]:hover{
+                background: #248959;
+                color: #e2e2e2;
+            }
+
+            #login .form h3{
+                width: 100%;
+                text-align: center;
+            }
+            #login .form p{
+                width: 100%;
+                text-align: center;
+                padding: 5px 10px;
+            }
+            #login .form a{
+                width: 100%;
+                text-align: center;
+                padding: 0 10px 20px 10px;
+            }
+        </style>
+    </head>
+    <body onload="">
+        <h2>ToDo-Liste</h2>
+        <section id="login">
+            <div class="form">
+                <input type="text" placeholder="Benutzer" id="user">
+                <input type="password" placeholder="Passwort" id="password">
+                <div style="margin-left: 20px;">
+                    <input type="checkbox" id="stayLoggedIn"> Angemeldet bleiben
+                </div>
+                <a href="http://192.168.178.253:80/">Zurück zum Linktree</a>
+                <input type="button" value="Anmelden" onclick="ToDoLogin()">
+            </div>
+        </section>
+        <script src="/data/001-ClientJS/80xx-utils.js"></script>
+        <script src="/data/001-ClientJS/8020-ToDo.js"></script>
+    </body>
+</html>

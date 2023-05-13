@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        ::selection{
+            user-select: none;
+        }
+
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 90vh;
+            margin: 0;
+            background: #030303;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 400px;
+            background: transparent;
+            padding: 30px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #e2e2e2;
+        }
+
+        .header header{
+            font-size: 36px;
+        }
+
+        .header .header-comment{
+            font-size: 18px;
+            color: #e2e2e2;
+        }
+
+        .link-div{
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            width: 360px;
+            background: #e2e2e2;
+            box-shadow: 0px 0px 124px 46px #e2e2e26e;
+            padding: 30px;
+            border-radius: 10px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #content span{
+            display: flex;
+            width: 250px;
+            padding: 10px;
+            color: #353535;
+            margin: 10px auto;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a{
+            display: flex;
+            width: 250px;
+            padding: 5px;
+            color: #353535;
+            border: 1px solid #353535;
+            margin: 10px auto;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all ease-in-out .2s;
+        }
+
+        a:hover{
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body onload="onInit()">
+    <div class="header">
+        <header>Server Status</header>
+        <span class="header-comment">// node-serv-01</span>
+    </div>
+    <div class="link-div" id="content">
+
+    </div>
+    <script src="/data/001-ClientJS/80xx-utils.js"></script>
+    <script src="/data/001-ClientJS/8010-serverStats.js"></script>
+    <script>
+function onInit(){
+    if(sessionStorage.getItem("user") != null){ 
+        setInterval(() => { 
+            getSysInfo();
+        }, 1000);
+    }else if(getCookie("user") != null){ 
+        setInterval(() => { 
+            getSysInfo();
+        }, 1000);
+    }else{
+        window.open("/", "_self");
+    }
+}
+    </script>
+</body>
+</html>
